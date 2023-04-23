@@ -156,7 +156,7 @@ const ProductForm: FC<ProductFormProps> = ({ productInfo: { title, description, 
             </div>
         ))}
 
-        <label htmlFor={inputFileId}>Photos</label>
+        <label>Photos</label>
         <div className='mb-3 flex items-center flex-wrap-reverse'>
             <a href="http://" target="_blank" rel="noopener noreferrer"></a>
             <div className='flex'>
