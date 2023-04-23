@@ -150,7 +150,7 @@ const ProductForm: FC<ProductFormProps> = ({ productInfo: { title, description, 
         {propertiesToFill.length > 0 && propertiesToFill.map((p: IProperty, index: number) => (
             <div key={index} className=''>
                 <label className='capitalize'>{p.name}</label>
-                <select value={formData.properties[index].value} onChange={(e) => handlePropertiesChange(p.name, e.target.value)}>
+                <select value={formData.properties[index]?.value} onChange={(e) => handlePropertiesChange(p.name, e.target.value)}>
                     {p.values.map((value: string, index: number) => (<option key={index} value={value}>{value}</option>))}
                 </select>
             </div>
@@ -192,7 +192,7 @@ const ProductForm: FC<ProductFormProps> = ({ productInfo: { title, description, 
                     })}
                 </ReactSortable>
             </div>
-            <label htmlFor={inputFileId} className='cursor-pointer w-24 h-24 border text-center flex flex-col items-center justify-center text-sm gap-1 text-gray-500 rounded-lg hover:bg-gray-200 shadow-md mx-1'><UilUpload />
+            <label className='cursor-pointer w-24 h-24 border text-center flex flex-col items-center justify-center text-sm gap-1 text-gray-500 rounded-lg hover:bg-gray-200 shadow-md mx-1'><UilUpload />
                 <div className="">
                     Upload
                 </div>
