@@ -7,11 +7,13 @@ interface LoginProps {
 
 const Login: FC<LoginProps> = ({ }) => {
     const { data: session, status } = useSession();
-    console.log({ data: session, status });
+
 
     const loginHandler = () => {
         signIn("google");
-        
+        if (session !== undefined && status === "authenticated") {
+            console.log({ data: session, status });
+        }
     };
 
     return <div>

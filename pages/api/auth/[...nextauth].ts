@@ -1,6 +1,6 @@
 import NextAuth, { getServerSession } from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
-import { AuthOptions } from 'next-auth';
+import type { AuthOptions } from 'next-auth';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 const adminEmails = ["amertahawy111@gmail.com", "elfathstore.ymka@gmail.com"];
