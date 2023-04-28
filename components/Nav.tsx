@@ -19,15 +19,15 @@ const Nav: FC<NavProps> = ({ className, show, ...props }): any => {
     const inActiveIcon = "w-6 h-6";
     const activeIcon = `${inActiveIcon} text-primary`;
 
-    if (session === undefined && status === "loading") {
-        return <div className="flex w-full h-screen justify-center items-center">
-            <Spinner loading />
-        </div>;
-    }
-    if (!session) {
-        push('/login');
-        return;
-    };
+    // if (session === undefined && status === "loading") {
+    //     return <div className="flex w-full h-screen justify-center items-center">
+    //         <Spinner loading />
+    //     </div>;
+    // }
+    // if (!session) {
+    //     push('/login');
+    //     return;
+    // };
 
     return <aside className={cn(`text-gray-500 p-4 fixed w-full bg-bgGray h-full ${show ? "left-0" : "-left-full"} md:static md:w-auto transition-all`, className)}  {...props}>
         <div className="mb-4 mr-4">

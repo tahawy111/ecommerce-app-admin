@@ -12,14 +12,14 @@ export default function Home() {
   </Head>;
   const router = useRouter();
 
-  console.log({ data: session, status });
+  // console.log({ data: session, status });
 
 
-  if (session === undefined && status === "loading") {
-    return <div className="flex w-full h-screen justify-center items-center">
-      <Spinner loading />
-    </div>;
-  }
+  // if (session === undefined && status === "loading") {
+  //   return <div className="flex w-full h-screen justify-center items-center">
+  //     <Spinner loading />
+  //   </div>;
+  // }
 
 
   return (<Layout head={head}>

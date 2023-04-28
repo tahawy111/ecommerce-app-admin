@@ -5,14 +5,28 @@ import { FC, useState } from "react";
 import { UilBars } from '@iconscout/react-unicons';
 import Spinner from "./Spinner";
 import Logo from "./Logo";
+import { useRouter } from "next/router";
 
 interface LayoutProps extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   children: React.ReactNode;
   head?: React.ReactNode;
 }
 
-const Layout: FC<LayoutProps> = ({ children, className, head, ...props }) => {
+const Layout: FC<LayoutProps> = ({ children, className, head, ...props }):any => {
   const [showNav, setShowNav] = useState<boolean>(false);
+  const { data: session, status } = useSession();
+  const router = useRouter();
+
+      if (session === undefined && status === "loading") {
+        return <div className="flex w-full h-screen justify-center items-center">
+            <Spinner loading />
+        </div>;
+    }
+    if (!session) {
+      router.push('/login');
+        return;
+    };
+
 
   return (
     <>

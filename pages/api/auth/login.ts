@@ -30,6 +30,9 @@ const login = async (req: NextApiRequest, res: NextApiResponse) => {
         const { name, email, image, type } = req.body;
         console.log(req.body);
         const user = await User.findOne({ email });
+        console.log(user);
+        
+        if (user?.role !== "admin") return res.status(403).json({ msg: "Only admins can signin" });
 
         if (user) {
             const createdPassword = email + process.env.SIGNIN_SECRET;
@@ -46,7 +49,7 @@ const login = async (req: NextApiRequest, res: NextApiResponse) => {
             const newUser = await User.create({ name, email, image, type, password: hashedPassword });
             const { ...user } = newUser;
             const access_token = generateAccessToken({ id: user._id });
-            res.json({ msg: "Login success!", access_token, user: user });
+            res.json({ msg: "Login success!", access_token, user: user._doc });
         }
     } catch (error) {
 

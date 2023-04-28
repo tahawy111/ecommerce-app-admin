@@ -12,6 +12,7 @@ export interface IUser {
     role: string;
     createdAt?: string;
     updatedAt?: string;
+    _doc?:object
 }
 
 type UserDocument = Document & IUser;
