@@ -10,7 +10,6 @@ export interface IUser {
     email: string;
     image: string;
     role: string;
-    emailVerified: null;
     createdAt?: string;
     updatedAt?: string;
 }
@@ -22,7 +21,6 @@ const UserSchema = new Schema<UserDocument>({
     email: { type: String, required: true },
     image: { type: String, default: "https://res.cloudinary.com/devatchannel/image/upload/v1602752402/avatar/avatar_cugq40.png" },
     role: { type: String, default: "user", enum: ["user", "admin"] },
-    emailVerified: null
 }, {
     timestamps: true,
 });

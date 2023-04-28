@@ -1,22 +1,34 @@
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { UilStore, UilArchiveAlt, UilEstate, UilListUl, UilSetting, UilSignout } from '@iconscout/react-unicons';
-import { signOut } from 'next-auth/react';
+import { signOut, useSession } from 'next-auth/react';
 import Logo from './Logo';
+import Spinner from './Spinner';
 
 interface NavProps extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> {
     show: boolean;
 }
 
-const Nav: FC<NavProps> = ({ className, show, ...props }) => {
-
-    const { pathname } = useRouter();
+const Nav: FC<NavProps> = ({ className, show, ...props }): any => {
+    const { data: session, status } = useSession();
+    const { pathname, push } = useRouter();
     const inActiveLink = "flex gap-1 p-1 items-center";
     const activeLink = `${inActiveLink} bg-highlight text-black rounded-sm`;
     const inActiveIcon = "w-6 h-6";
     const activeIcon = `${inActiveIcon} text-primary`;
+
+    if (session === undefined && status === "loading") {
+        return <div className="flex w-full h-screen justify-center items-center">
+            <Spinner loading />
+        </div>;
+    }
+    if (!session) {
+        push('/login');
+        return;
+    };
+
     return <aside className={cn(`text-gray-500 p-4 fixed w-full bg-bgGray h-full ${show ? "left-0" : "-left-full"} md:static md:w-auto transition-all`, className)}  {...props}>
         <div className="mb-4 mr-4">
             <Logo />

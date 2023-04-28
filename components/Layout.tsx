@@ -12,15 +12,7 @@ interface LayoutProps extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLD
 }
 
 const Layout: FC<LayoutProps> = ({ children, className, head, ...props }) => {
-  const { data: session, status } = useSession();
   const [showNav, setShowNav] = useState<boolean>(false);
-
-  if (status === "loading") {
-    return <div className="flex w-full h-screen justify-center items-center">
-      <Spinner loading />
-    </div>;
-  }
-
 
   return (
     <>

@@ -1,14 +1,25 @@
 import Layout from "@/components/Layout";
+import Spinner from "@/components/Spinner";
 import getThis from "@/lib/getThis";
 import { useSession } from "next-auth/react";
 import Head from 'next/head';
+import { useRouter } from "next/router";
 
 export default function Home() {
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
   const head = <Head>
     <title>EcommerceAdmin</title>
   </Head>;
+  const router = useRouter();
 
+  console.log({ data: session, status });
+
+
+  if (session === undefined && status === "loading") {
+    return <div className="flex w-full h-screen justify-center items-center">
+      <Spinner loading />
+    </div>;
+  }
 
 
   return (<Layout head={head}>
