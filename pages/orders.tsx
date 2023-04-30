@@ -7,7 +7,7 @@ interface ordersProps {
 
 }
 
-const orders: FC<ordersProps> = ({ }) => {
+const Orders: FC<ordersProps> = ({ }) => {
   const [orders, setOrders] = useState<IOrder[]>();
   useEffect(() => {
     axios.get('/api/orders').then((res) => {
@@ -27,7 +27,7 @@ const orders: FC<ordersProps> = ({ }) => {
       </thead>
       <tbody>
         {orders && orders?.length > 0 && orders?.map((order) => (
-          <tr>
+          <tr key={order._id}>
             <td>{new Date(order.createdAt).toLocaleString("en-NZ")}</td>
             <td>
               {order.name}, {order.email} <br />
@@ -52,4 +52,4 @@ const orders: FC<ordersProps> = ({ }) => {
   </Layout>;
 };
 
-export default orders;
+export default Orders;
