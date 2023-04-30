@@ -12,6 +12,7 @@ interface LayoutProps extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLD
   head?: React.ReactNode;
 }
 
+
 const Layout: FC<LayoutProps> = ({ children, className, head, ...props }):any => {
   const [showNav, setShowNav] = useState<boolean>(false);
   const { data: session, status } = useSession();

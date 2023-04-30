@@ -203,6 +203,8 @@ const ProductForm: FC<ProductFormProps> = ({ productInfo: { title, description, 
 
         <label htmlFor={descId}>Description</label>
         <textarea name="description" placeholder='Description' id={descId} defaultValue={formData.description} onChange={handleInputChange}></textarea>
+        <Input placeholder={`Price (in ${process.env.CURRENCY})`} name='price' value={formData.price}
+            onChange={handleInputChange} pattern='\d+' />
         <Input placeholder='Price (in USD)' name='price' value={formData.price}
             onChange={handleInputChange} pattern='\d+' />
         <button className='btn-primary mx-1' type='submit'>Save</button>
