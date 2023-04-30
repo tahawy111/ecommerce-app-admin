@@ -22,7 +22,8 @@ const EditProduct: FC<EditProductProps> = ({ }) => {
     description: "",
     images: [],
     category: "",
-    properties: {}
+    properties: {},
+    inStock: 0,
   });
 
   /* 
