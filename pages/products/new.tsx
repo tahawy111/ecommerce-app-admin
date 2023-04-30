@@ -5,7 +5,7 @@ import { IFormEvent, InputChange } from '@/types/typescript';
 import axios from 'axios';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { FC, useState } from 'react';
+import { FC, useId, useState } from 'react';
 
 interface newProps {
 
@@ -23,13 +23,14 @@ const NewProduct: FC<newProps> = ({ }) => {
         description: "",
         images: [],
         category: "",
-        properties: undefined
+        properties: undefined,
+        inStock: 0,
     });
     const handleInputChange = ({ target }: InputChange) => {
         setFormData((v: any) => ({ ...formData, [target.name]: target.validity.valid ? target.value : v[target.name] }));
     };
     const router = useRouter();
-    const descId = Date.now().toString();
+    const descId = useId();
     if (goToProducts) router.push('/products');
 
 

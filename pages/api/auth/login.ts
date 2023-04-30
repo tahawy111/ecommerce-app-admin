@@ -40,8 +40,8 @@ const login = async (req: NextApiRequest, res: NextApiResponse) => {
             // if (!isMatch) return res.status(403).json({ msg: "Password isn't match" });
             const { ...user2 } = user;
             const access_token = generateAccessToken({ id: user._id });
-            console.log({ msg: "Login success!", access_token, user: user2 });
-            res.json({ msg: "Login success!", access_token, user: user2 });
+            console.log({ msg: "Login success!", access_token, user: user2._doc });
+            res.json({ msg: "Login success!", access_token, user: user2._doc });
         } else {
             // create user and login
             const createdPassword = email + process.env.SIGNIN_SECRET;

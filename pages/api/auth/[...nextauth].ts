@@ -6,6 +6,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 const adminEmails = ["amertahawy111@gmail.com", "elfathstore.ymka@gmail.com"];
 
 export const authOptions: AuthOptions = {
+  secret: process.env.NEXTAUTH_SECRET,
   providers: [
     GoogleProvider({
       clientId: `${process.env.GOOGLE_ID}`,

@@ -20,7 +20,7 @@ interface ProductFormProps {
     productInfo: IProduct;
 }
 
-const ProductForm: FC<ProductFormProps> = ({ productInfo: { title, description, price, _id, images, category, properties } }) => {
+const ProductForm: FC<ProductFormProps> = ({ productInfo: { title, description, price, _id, images, category, properties,inStock } }) => {
     const [categories, setCategories] = useState<ICategory[]>();
     // Properties section
 
@@ -50,6 +50,7 @@ const ProductForm: FC<ProductFormProps> = ({ productInfo: { title, description, 
         images,
         category,
         properties: properties || {},
+        inStock,
     });
     console.log(formData);
 
@@ -205,7 +206,7 @@ const ProductForm: FC<ProductFormProps> = ({ productInfo: { title, description, 
         <textarea name="description" placeholder='Description' id={descId} defaultValue={formData.description} onChange={handleInputChange}></textarea>
         <Input placeholder={`Price (in ${process.env.CURRENCY})`} name='price' value={formData.price}
             onChange={handleInputChange} pattern='\d+' />
-        <Input placeholder='Price (in USD)' name='price' value={formData.price}
+        <Input placeholder='In Stock' name='inStock' value={formData.inStock}
             onChange={handleInputChange} pattern='\d+' />
         <button className='btn-primary mx-1' type='submit'>Save</button>
     </form>;

@@ -3,12 +3,10 @@ import { mongooseConnect } from '@/lib/mongoose';
 import Product from '@/models/Product';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { getError } from './../../lib/getError';
-import { isAdminRequest } from './auth/[...nextauth]';
 
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   mongooseConnect();
-  await isAdminRequest(req, res);
   switch (req.method) {
     case "POST":
       await createProduct(req, res);

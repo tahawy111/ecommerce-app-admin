@@ -3,6 +3,7 @@ import Spinner from "@/components/Spinner";
 import getThis from "@/lib/getThis";
 import { useSession } from "next-auth/react";
 import Head from 'next/head';
+import Image from 'next/image';
 import { useRouter } from "next/router";
 
 export default function Home() {
@@ -28,7 +29,7 @@ export default function Home() {
       <h2>Hello, {session?.user.name}</h2>
 
       <div className="flex bg-gray-300 gap-1 text-black items-center rounded-lg overflow-hidden pr-1">
-        <img src={getThis(session?.user.image)} className="w-8 h-8" alt="" />
+        <Image src={getThis(session?.user.image)} width={33} height={33} alt="" />
         <span className="px-2">
           <h2>{session?.user.name}</h2>
         </span>
