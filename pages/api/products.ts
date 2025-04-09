@@ -1,11 +1,13 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import { mongooseConnect } from '@/lib/mongoose';
-import Product from '@/models/Product';
-import type { NextApiRequest, NextApiResponse } from 'next';
-import { getError } from './../../lib/getError';
+import { mongooseConnect } from "@/lib/mongoose";
+import Product from "@/models/Product";
+import type { NextApiRequest, NextApiResponse } from "next";
+import { getError } from "./../../lib/getError";
 
-
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
   mongooseConnect();
   switch (req.method) {
     case "POST":
@@ -21,12 +23,23 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       await deleteProduct(req, res);
       break;
   }
-};
+}
 
 const createProduct = async (req: NextApiRequest, res: NextApiResponse) => {
-  const { title, description, price, images, category, properties } = req.body;
+  const { title, description, price, images, category, properties, inStock } =
+    req.body;
   try {
-    const product = await Product.create({ title, description, price: parseInt(price), images, category, properties });
+    const product = await Product.create({
+      title,
+      description,
+      price: parseInt(price),
+      images,
+      category,
+      properties,
+      inStock,
+    });
+    console.log(req.body);
+
     res.json(product);
   } catch (error) {
     res.json({ err: getError(error) });

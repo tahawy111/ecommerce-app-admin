@@ -27,6 +27,7 @@
     "clsx": "^1.2.1",
     "eslint": "8.38.0",
     "eslint-config-next": "13.3.0",
+    "islamic-adhan": "^1.0.6",
     "jsonwebtoken": "^9.0.0",
     "mongodb": "^4.15.0",
     "mongoose": "^7.0.3",
